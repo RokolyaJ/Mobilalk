@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GoPlaneticket</string>
+    <string name="to">Kiindulási repülőtér</string>
+    <string name="from">Úticél</string>
+    <string name="passengers">Személyek</string>
+    <string name="adult">1 Felnőtt</string>
+    <string name="child">1 Gyerek</string>
+    <string name="departure_date">Indulás</string>
+    <string name="return_date">Érkezés</string>
+    <string name="select_date">Válassza ki a dátumot!</string>
+    <string name="flight_class">Osztály</string>
+    <string name="search_flights">Keresés</string>
+    <string name="welcome_text">Válasszon járatot!</string>
+    <string name="your_tickets">Foglalásaim</string>
+    <string name="no_tickets">Nincs foglalásod!</string>
+    <string-array name="locations">
+        <item>New York, USA</item>
+        <item>Los Angeles, USA</item>
+        <item>London, UK</item>
+        <item>Budapest, Hungary</item>
+    </string-array>
+
+    <string-array name="class_options">
+        <item>Economy</item>
+        <item>Business</item>
+        <item>First Class</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2196F3"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GoPlaneTicket"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp" />
+
+    <ImageView
+        android:id="@+id/planeImage"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/plane_home"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:contentDescription="Repülőgép" />
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Utazz velünk biztonságban!"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/textSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Benne vagy az utazásban?"
+        android:textColor="#DDDDDD"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Bejelentkezés"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#2196F3"
+        android:elevation="4dp" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Regisztráció"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#2196F3"
+        android:elevation="4dp" />
+</LinearLayout>

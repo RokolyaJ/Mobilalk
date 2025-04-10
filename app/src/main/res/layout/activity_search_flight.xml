@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/plane_background"
+            android:layout_marginTop="32dp">
+
+            <ImageView
+                android:id="@+id/ivProfileIcon"
+                android:layout_width="48dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/plane_icon"
+                android:contentDescription="ikon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Válasszon járatot"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:gravity="center" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/editFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Kiindulási repülőtér (pl. Budapest)"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Úticél (pl. Dubai)"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginTop="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/editAdults"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="Felnőttek"
+                android:inputType="number"
+                android:padding="10dp"
+                android:background="@android:drawable/edit_text" />
+
+            <EditText
+                android:id="@+id/editChildren"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="Gyerekek"
+                android:inputType="number"
+                android:padding="10dp"
+                android:layout_marginStart="8dp"
+                android:background="@android:drawable/edit_text" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editDeparture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Indulás dátuma"
+            android:focusable="false"
+            android:clickable="true"
+            android:padding="10dp"
+            android:drawableEnd="@android:drawable/ic_menu_my_calendar"
+            android:layout_marginTop="16dp"
+            android:background="@android:drawable/edit_text" />
+
+        <EditText
+            android:id="@+id/editReturn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Érkezés dátuma"
+            android:focusable="false"
+            android:clickable="true"
+            android:padding="10dp"
+            android:drawableEnd="@android:drawable/ic_menu_my_calendar"
+            android:layout_marginTop="12dp"
+            android:background="@android:drawable/edit_text" />
+
+        <EditText
+            android:id="@+id/editClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Osztály (pl. Economy)"
+            android:padding="10dp"
+            android:inputType="text"
+            android:layout_marginTop="12dp"
+            android:background="@android:drawable/edit_text" />
+
+        <Button
+            android:id="@+id/btnSearchFlights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keresés"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2196F3"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+</ScrollView>

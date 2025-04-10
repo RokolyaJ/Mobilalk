@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "562870854148",
+    "firebase_url": "https://goplaneticket-8eda8-default-rtdb.firebaseio.com",
+    "project_id": "goplaneticket-8eda8",
+    "storage_bucket": "goplaneticket-8eda8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562870854148:android:0c4d4c45d0928374a20b51",
+        "android_client_info": {
+          "package_name": "com.example.goplaneticket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMPEns6rYxXjLQgtorwzAQkPJbkxP2gIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
