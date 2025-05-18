@@ -42,9 +42,18 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
     public void onBindViewHolder(@NonNull TicketViewHolder holder, int position) {
         Ticket ticket = ticketList.get(position);
 
-        holder.tvFlightId.setText("Járat azonosító: " + ticket.getFlightId());
+
+        holder.tvFlightInfo.setText(
+                ticket.getFrom() + " ➔ " + ticket.getTo() + "\n" +
+                        "Indulás: " + ticket.getDepartureTime()
+        );
+
+
         holder.tvSeats.setText("Székek: " + String.join(", ", ticket.getSeats()));
+
+
         holder.tvDate.setText("Foglalva: " + formatDate(ticket.getTimestamp()));
+
 
         holder.btnModify.setOnClickListener(v -> {
             Intent intent = new Intent(context, SeatSelectionActivity.class);
@@ -54,6 +63,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
             intent.putExtra("mode", "modify");
             context.startActivity(intent);
         });
+
 
         holder.btnDelete.setOnClickListener(v -> {
             new AlertDialog.Builder(context)
@@ -71,12 +81,12 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
     }
 
     static class TicketViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFlightId, tvSeats, tvDate;
+        TextView tvFlightInfo, tvSeats, tvDate;
         Button btnModify, btnDelete;
 
         public TicketViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvFlightId = itemView.findViewById(R.id.tvFlightId);
+            tvFlightInfo = itemView.findViewById(R.id.tvFlightInfo);
             tvSeats = itemView.findViewById(R.id.tvSeats);
             tvDate = itemView.findViewById(R.id.tvDate);
             btnModify = itemView.findViewById(R.id.btnModifyTicket);

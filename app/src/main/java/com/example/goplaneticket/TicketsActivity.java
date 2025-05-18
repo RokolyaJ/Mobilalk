@@ -62,6 +62,7 @@ public class TicketsActivity extends AppCompatActivity {
     private void loadUserTickets() {
         progressBar.setVisibility(View.VISIBLE);
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         if (auth.getCurrentUser() == null) {
             Toast.makeText(this, "Előbb be kell jelentkezned!", Toast.LENGTH_SHORT).show();
@@ -70,7 +71,6 @@ public class TicketsActivity extends AppCompatActivity {
         }
 
         String userId = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("seat_reservations")
                 .whereEqualTo("user", userId)

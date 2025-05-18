@@ -3,6 +3,9 @@ package com.example.goplaneticket;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
     private static final String CHANNEL_ID = "registration_channel";
+    private static final int JOB_ID = 101;
 
     Button btnLogin, btnRegister;
 
@@ -40,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         btnLogin.startAnimation(bounce);
 
         createNotificationChannel();
+        scheduleBackgroundJob();
 
         btnLogin.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
@@ -128,6 +133,20 @@ public class HomeActivity extends AppCompatActivity {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED || Build.VERSION.SDK_INT < 33) {
             notificationManager.notify(1, builder.build());
+        }
+    }
+
+    private void scheduleBackgroundJob() {
+        ComponentName componentName = new ComponentName(this, SampleJobService.class);
+        JobInfo jobInfo = new JobInfo.Builder(JOB_ID, componentName)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .setPeriodic(15 * 60 * 1000) // 15 percenként
+                .setPersisted(true)
+                .build();
+
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        if (jobScheduler != null) {
+            jobScheduler.schedule(jobInfo);
         }
     }
 }

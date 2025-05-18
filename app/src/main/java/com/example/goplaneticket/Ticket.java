@@ -8,8 +8,13 @@ public class Ticket {
     private long timestamp;
     private String documentId;
 
-    public Ticket() {
 
+    private String from;
+    private String to;
+    private String departureTime;
+
+
+    public Ticket() {
     }
 
 
@@ -29,6 +34,18 @@ public class Ticket {
         return documentId;
     }
 
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
 
     public void setFlightId(String flightId) {
         this.flightId = flightId;
@@ -44,5 +61,17 @@ public class Ticket {
 
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
     }
 }

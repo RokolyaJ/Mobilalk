@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
@@ -42,6 +43,8 @@ public class SeatSelectionActivity extends AppCompatActivity {
     private String flightId;
     private String documentId;
     private boolean isModifyMode = false;
+    private Flight flight;
+
     private final Random random = new Random();
 
     private final int[][] seatLayout = {
@@ -75,7 +78,8 @@ public class SeatSelectionActivity extends AppCompatActivity {
             }
         }
 
-        Flight flight = (Flight) getIntent().getSerializableExtra("flight");
+        flight = (Flight) getIntent().getSerializableExtra("flight");
+
         if (flight != null) {
             flightId = flight.getId();
         } else {
@@ -112,7 +116,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
                             alreadyTaken = generateRandomReservedSeats();
                         } else {
                             alreadyTaken = new ArrayList<>(tempTaken);
-
                             if (isModifyMode && currentSeats != null) {
                                 alreadyTaken.removeAll(currentSeats);
                             }
@@ -151,7 +154,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
                         Toast.makeText(this, "Hiba: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         } else {
-            // 🔥 LÉNYEG: Létrehozunk egy ÚJ ID-t
             String newDocumentId = db.collection("seat_reservations").document().getId();
 
             Map<String, Object> booking = new HashMap<>();
@@ -159,11 +161,16 @@ public class SeatSelectionActivity extends AppCompatActivity {
             booking.put("flightId", flightId);
             booking.put("seats", selectedSeats);
             booking.put("timestamp", System.currentTimeMillis());
-            booking.put("documentId", newDocumentId); // 🔥 EZ KELL A TICKET-HEZ!
+
+            if (flight != null) {
+                booking.put("from", flight.getFrom());
+                booking.put("to", flight.getTo());
+                booking.put("departureTime", flight.getDepartureTime());
+            }
 
             db.collection("seat_reservations")
                     .document(newDocumentId)
-                    .set(booking) // 🔥
+                    .set(booking)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(this, "Foglalás elmentve!", Toast.LENGTH_SHORT).show();
                         scheduleReminder();
@@ -175,7 +182,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
         }
     }
 
-
     private void scheduleReminder() {
         long triggerTime = System.currentTimeMillis() + 60 * 1000;
 
@@ -185,8 +191,17 @@ public class SeatSelectionActivity extends AppCompatActivity {
         );
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
         if (alarmManager != null) {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (alarmManager.canScheduleExactAlarms()) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+                } else {
+                    Toast.makeText(this, "Nincs engedély a pontos riasztásokhoz!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+            }
         }
     }
 
